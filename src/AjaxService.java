@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLDecoder;
 
 
 public class AjaxService extends HttpServlet {
@@ -20,8 +19,8 @@ public class AjaxService extends HttpServlet {
 
 
         try{
-//            request.setCharacterEncoding("UTF-8");
-//            response.setContentType("text/html;charset=gb18030");
+//            httpServletRequest.setCharacterEncoding("UTF-8");
+//            httpServletResponse.setContentType("text/html;charset=gb18030");
 
             httpServletResponse.setContentType("text/html;charset=utf-8");
             PrintWriter out = httpServletResponse.getWriter();
@@ -37,9 +36,9 @@ public class AjaxService extends HttpServlet {
 
             //1.取参数
             String old = httpServletRequest.getParameter("name");
-            System.out.println(old);
-            //String name = new String(old.getBytes("iso8859-1"),"UTF-8");
-            String name = URLDecoder.decode(old,"UTF-8");
+            String name = new String(old.getBytes("iso8859-1"),"UTF-8");
+            System.out.println(name);
+//            String name = URLDecoder.decode(old,"UTF-8");
             //2.检查参数是否有问题
             if(old == null || old.length() == 0){
                 out.println("用户名不能为空");
